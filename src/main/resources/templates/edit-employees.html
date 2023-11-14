@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot App SRUD</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link th:href="@{/styles/styles.css}" rel="stylesheet" />
+</head>
+<body>
+   
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+      <a class="navbar-brand" href="/"><b>Spring</b> Boot App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="/employees">Edit Employees</a></li>
+              <li class="nav-item"><a class="nav-link" href="/add">Add Employees</a></li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<div class="container">
+    <form class="user" action="#" 
+    th:action="@{/update/{id}(id=${employee.id})}"
+    th:object="${employee}"
+     method="post">
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Name">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        <label for="email">Email</label>
+        <input type="text" th:field="*{email}" id="email" placeholder="Email">
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+
+        <label for="department">Department</label>
+        <input type="text" th:field="*{department}" id="department" placeholder="Department">
+
+        <label for="position">Position</label>
+        <input type="text" th:field="*{position}" id="position" placeholder="Position">
+        <input type="submit" value="Add Employee">   
+    </form>
+</div>
+
+</body>
+</html>
